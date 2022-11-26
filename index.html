@@ -56,7 +56,7 @@
         const url = `https://free-quotes-api.herokuapp.com/`;
         const data = await (await fetch(url)).json().then((result) => {
           document.getElementById("quote").innerText = `"${result.quote}"`;
-          document.getElementById("author").innerText = `- ${result.author}`;
+          document.getElementById("author").innerText = result.author ? `- ${result.author}` : " - Unknown";
         });
       };
 
