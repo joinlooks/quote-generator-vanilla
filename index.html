@@ -64,8 +64,11 @@
       const generateQuote = async () => {
         const url = `https://free-quotes-api.herokuapp.com/`;
         const data = await (await fetch(url)).json();
-        document.getElementById("quote").innerText = `"${data.quote}"`;
-        document.getElementById("author").innerText = `- ${data.author}`;
+
+        setTimeout(() => {
+          document.getElementById("quote").innerText = `"${data.quote}"`;
+          document.getElementById("author").innerText = `- ${data.author}`;
+        }, 500);
       };
 
       window.onload = () => {
