@@ -20,7 +20,7 @@
         width: 100vw;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
       }
 
       .quote {
@@ -30,21 +30,13 @@
 
       .author {
         font-size: 15px;
-      }
-
-      hr {
-        width: 80vw;
-        margin: 10px;
+        margin: 20px 50px;
       }
 
       @media screen and (min-width: 900px) {
         .container {
           width: 50vw;
           margin: auto;
-        }
-
-        hr {
-          width: 45vw;
         }
       }
     </style>
@@ -55,7 +47,6 @@
     <div class="App">
       <div class="container">
         <div class="quote" id="quote"></div>
-        <hr />
         <div class="author" id="author"></div>
       </div>
     </div>
@@ -63,12 +54,10 @@
     <script>
       const generateQuote = async () => {
         const url = `https://free-quotes-api.herokuapp.com/`;
-        const data = await (await fetch(url)).json();
-
-        setTimeout(() => {
-          document.getElementById("quote").innerText = `"${data.quote}"`;
-          document.getElementById("author").innerText = `- ${data.author}`;
-        }, 500);
+        const data = await (await fetch(url)).json().then((result) => {
+          document.getElementById("quote").innerText = `"${result.quote}"`;
+          document.getElementById("author").innerText = `- ${result.author}`;
+        });
       };
 
       window.onload = () => {
